@@ -5736,8 +5736,8 @@ table.text-center th {
 
 .l-wrapper_06 {
   margin: 1rem ;
-  width: 120px;
-  height: 120px;
+  width: 85px;
+  height: 90px;
   float: left;
 }
 
@@ -5756,11 +5756,11 @@ table.text-center th {
 }
 
 .card-content_06 {
-  font-size: 1em;
+  font-size: 0.7em;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  padding: 1rem 1.5rem 0;
+  /* padding: 1rem 1.5rem 0; */
   background: transparent;
   border: none;
   width: 100%;
@@ -5772,15 +5772,15 @@ table.text-center th {
 .l-wrapper_02 {
   margin: 1rem ;
   float: left;
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   /* overflow: auto; */
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0,0,0,.2);
   /* background-color: pink; */
   display: flex;
   padding: 1rem 1.5rem 0;
-  font-size: 1.6rem;
+  font-size: 1rem;
   font-weight: bold;
   justify-content: center;
   align-items: center;
@@ -5790,19 +5790,21 @@ table.text-center th {
 .X {
   justify-content: center;
   align-items: center;
-  font-size: large;
+  /* font-size: large; */
 }
 
 .reji-production{
   display: flex;
   margin: 10px 10px 10px 50px;
+  
 }
+
 
 
 .newProductDescription{
   margin-left: 10px;
   font: bold;
-  font-size: large;
+  font-size: small;
   width: 90%;
 }
 
@@ -5838,5 +5840,9 @@ table.text-center th {
 
 .payment_price, #getCashChange{
   margin-top: -20px;
+}
+
+.modal_pay{
+  margin-top: -15px;
 }
 

@@ -54,9 +54,9 @@ $(".card_06").on("click", "button.addProductSale", function(){
 
           '<div class="quantityAndPrice ">'+
           
-            '<div class="col-xs-4 enterPrice pull-right">'+
+            '<div class="col-xs-5 enterPrice pull-right">'+
               '<div class="input-group">'+
-                '<input type="text" class="form-control input-lg newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
+                '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
                 '<span class="input-group-addon">円</span>'+
               '</div>'+
             '</div>'+
@@ -66,7 +66,7 @@ $(".card_06").on("click", "button.addProductSale", function(){
             '</div>'+
 
             '<div class="col-xs-3 pull-right">'+
-              '<input type="number" class="form-control input-lg newProductQuantity" name="newProductQuantity" min="1" value="1" stock="'+stock+'" newStock="'+Number(stock-1)+'" required>'+
+              '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock="'+stock+'" newStock="'+Number(stock-1)+'" required>'+
             '</div>'+
 
           '</div>'+
@@ -126,9 +126,9 @@ $(".card_06").on("click", "button.addServiceSale", function(){
 
           '<div class="quantityAndPrice ">'+
           
-            '<div class="col-xs-4 enterPrice pull-right">'+
+            '<div class="col-xs-5 enterPrice pull-right">'+
               '<div class="input-group">'+
-                '<input type="text" class="form-control input-lg newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
+                '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
                 '<span class="input-group-addon">円</span>'+
               '</div>'+
             '</div>'+
@@ -138,7 +138,7 @@ $(".card_06").on("click", "button.addServiceSale", function(){
             '</div>'+
 
             '<div class="col-xs-3 pull-right">'+
-              '<input type="number" class="form-control input-lg newProductQuantity" name="newProductQuantity" min="1" value="1" required>'+
+              '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" required>'+
             '</div>'+
 
           '</div>'+
@@ -178,7 +178,7 @@ $(".salesTable").on("draw.dt", function(){
 //REMOVE PRODUCTS FROM THE SALE AND RECOVER BUTTON
 var idRemoveProduct = [];
 localStorage.removeItem("removeProduct");
-$(".saleForm").on("click", "button.removeProduct", function(){
+$(".box-body").on("click", "button.removeProduct", function(){
   $(this).parent().parent().remove();
   var idService = $(this).attr("idService");
   var idProduct = $(this).attr("idProduct");
@@ -253,7 +253,7 @@ $('.btnAddProduct').click(function(){
 
           '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
             '<div class="input-group">'+
-              '<input type="text" class="form-control newProductPrice" realPrice="" name="newProductPrice" readonly required>'+
+              '<input type="number" class="form-control newProductPrice" realPrice="" name="newProductPrice" readonly required>'+
               '<span class="input-group-addon">円</span>'+
             '</div>'+
           '</div>'+
@@ -345,7 +345,7 @@ $('.btnAddService').click(function(){
 })
 
 //Select product
-$(".saleForm").on("change", "select.newProductDescription", function(){
+$(".box-body").on("change", "select.newProductDescription", function(){
   var productName = $(this).val();
   
   var newProductDescription = $(this).parent().parent().parent().children().children().children(".newProductDescription");
@@ -377,7 +377,7 @@ $(".saleForm").on("change", "select.newProductDescription", function(){
 })
 
 //Select service
-$(".saleForm").on("change", "select.newServiceDescription", function(){
+$(".box-body").on("change", "select.newServiceDescription", function(){
   var serviceName = $(this).val();
   var newServiceDescription = $(this).parent().parent().parent().children().children().children(".newServiceDescription");
   var newServicePrice = $(this).parent().parent().parent().children(".enterPrice").children().children(".newServicePrice");
@@ -408,7 +408,7 @@ $(".saleForm").on("change", "select.newServiceDescription", function(){
 })
 
 //Modify quantity
-$(".saleForm").on("change", "input.newProductQuantity", function(){
+$(".box-body").on("change", "input.newProductQuantity", function(){
   var price = $(this).parent().parent().children(".enterPrice").children().children(".newProductPrice");
   var finalPrice = $(this).val() * price.attr("realPrice");
   price.val(finalPrice);
@@ -443,7 +443,7 @@ $(".saleForm").on("change", "input.newProductQuantity", function(){
 })
 
 //Modify service price
-$(".saleForm").on("change", "input.newProductPrice", function(){
+$(".box-body").on("input", "input.newProductPrice", function(){
   var price = $(this).parent().parent().children(".enterPrice").children().children(".newProductPrice");
   var finalPrice = $(this).val() * price.attr("realPrice");
   price.val(finalPrice);
@@ -501,6 +501,9 @@ $("#newTaxSale").change(function(){
 //Final price format
 $("#newSaleTotal").number(true);
 
+//price format
+$("#newProductPrice").number(true);
+
 //Select method payment
 $("#newPaymentMethod").on('change',function(){
   var method = $(this).val();
@@ -511,7 +514,7 @@ $("#newPaymentMethod").on('change',function(){
       '<div class="col-xs-4 payment_price">'+
         '<div style="font-weight:bold">お支払い金額</div>'+
         '<div class="input-group">'+
-          '<input type="text" class="form-control input-lg" id="newCashValue" placeholder="0" required>'+
+          '<input type="text" class="form-control input-lg" id="newCashValue" name="newCashValue" placeholder="0" required>'+
           '<span class="input-group-addon">円</span>'+
         '</div>'+
       '</div>'+
@@ -539,7 +542,7 @@ $("#newPaymentMethod").on('change',function(){
     $(this).parent().parent().parent().children('.paymentMethodBoxes').html(
       '<div class="col-xs-6" style="padding-left:0px">'+
         '<div class="input-group">'+
-          '<input type="number" class="form-control" id="newTransactionCode" placeholder="Transaction code" required>'+
+          '<input type="number" class="form-control input-lg" id="newTransactionCode" placeholder="Transaction code" required>'+
           '<span class="input-group-addon"><i class="fa fa-lock"></i></span>'+
         '</div>'+
       '</div>'
@@ -548,18 +551,26 @@ $("#newPaymentMethod").on('change',function(){
 })
 
 // Cash change
-$(".saleForm").on("change", "input#newCashValue", function(){
+$(".saleForm").on("input", 'input#newCashValue', function(){
   var cash = $(this).val();
   var change = Number(cash) - Number($('#saleTotal').val());
-  // console.log(change);
+  
   var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children("#newCashChange");
   newCashChange.val(change);
+
+  //会計時に必要金額より少ない金額で決済されるのを防ぐため
+  if(change >= 0){
+    // console.log('jiji');
+    $('.modal-footer').html(
+      '<button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>'+
+      '<button type="submit" class="btn btn-primary">会計をする</button>'
+    )
+  }  
   
 })
 
-
 //Change transaction code
-$('.saleForm').on("change", "input#newTransactionCode", function(){
+$('.box-body').on("change", "input#newTransactionCode", function(){
   //List method in the entry
   listMethods();
 })
@@ -791,6 +802,7 @@ $("#newSeller").on("change", function(){
     '<button type="submit" class="btn btn-primary pull-left" data-toggle="modal" data-target="#addSales">支払いへ</button>'
   )
 })
+
 
 
 

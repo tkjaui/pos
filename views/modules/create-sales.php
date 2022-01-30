@@ -1,18 +1,8 @@
 <div class="content-wrapper">
-  <section class="content-header">
-    <h1>
-      レジ
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-      <li class="active">Create Sale</li>
-    </ol>
-  </section>
-
   <section class="content">
     <div class="row">
       <!-- The form -->
-      <div class="col-lg-4 col-xs-12">
+      <div class="col-sm-4">
         <div class="box box-success">
           <div class="box-header with-border"></div>
           <!-- <form role="form" method="post" class="saleForm"> -->
@@ -22,7 +12,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <select class="form-control input-lg" name="" id="newSeller" required>
+                    <select class="form-control" name="" id="newSeller" required>
                       <option value="">施術者を選択</option>
                       <?php
                         $item = null;
@@ -49,12 +39,12 @@
                       $sales = ControllerSales::ctrShowSales($item, $value);
 
                       if(!$sales){
-                        echo '<input type="text" class="form-control input-lg" name="" id="newSale" value="10001" readonly>';
+                        echo '<input type="text" class="form-control" name="" id="newSale" value="10001" readonly>';
                       } else {
                         foreach ($sales as $key => $value) {
                         }
                         $code = $value["code"] +1;
-                        echo '<input type="text" class="form-control input-lg" name="" id="newSale" value="'.$code.'" readonly>';
+                        echo '<input type="text" class="form-control" name="" id="newSale" value="'.$code.'" readonly>';
                       }
                     ?>
                   </div>
@@ -63,8 +53,8 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                    <select class="form-control input-lg" name="" id="selectCustomer" required>
-                      <option value="">お客様を選択</option>
+                    <select class="form-control" name="" id="selectCustomer">
+                      <option value="" style="font-size:10px;">お客様を選択</option>
 
                       <?php
                         $item = null;
@@ -79,7 +69,7 @@
                     </select>
                     <span class="input-group-addon">
                       <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAddCustomer" data-dismiss="modal">
-                        お客様を追加
+                        お客様追加
                       </button>
                     </span>
                   </div>
@@ -95,9 +85,9 @@
                 <input type="hidden" name="product_sum_price" id="product_sum_price">
                 
                 <!-- Add service button -->
-                <button type="button" class="btn btn-default hidden-lg btnAddService">サービスを追加</button>
+                <!-- <button type="button" class="btn btn-default hidden-lg btnAddService">サービスを追加</button> -->
                 <!-- Add product button -->
-                <button type="button" class="btn btn-default hidden-lg btnAddProduct">商品を追加</button>
+                <!-- <button type="button" class="btn btn-default hidden-lg btnAddProduct">商品を追加</button> -->
                 <hr>
                 <div class="row">
                   <!-- Taxes and total input -->
@@ -111,7 +101,7 @@
                         <tr>
                           <td style="width:50%">
                             <div class="input-group">
-                              <input type="number" class="form-control input-lg" name="newTaxSale" id="newTaxSale" placeholder="0" min="0" value="0" required>
+                              <input type="number" class="form-control " name="newTaxSale" id="newTaxSale" placeholder="0" min="0" value="0" required>
                               <input type="hidden" name="" id="newTaxPrice" required>
                               <input type="hidden" name="" id="newNetPrice" required>
                               <span class="input-group-addon"><i class="fa fa-percent"></i></span>
@@ -119,7 +109,7 @@
                           </td>
                           <td style="width:50%">
                             <div class="input-group">
-                              <input type="text" class="form-control input-lg" name="newSaleTotal" id="newSaleTotal" placeholder="0" totalSale="" readonly required>
+                              <input type="text" class="form-control " name="newSaleTotal" id="newSaleTotal" placeholder="0" totalSale="" readonly required>
                               <input type="hidden" name="" id="saleTotal" required>
                               <span class="input-group-addon">円</span>
                             </div>
@@ -151,7 +141,7 @@
         </div>
       </div>
       <!-- Products table -->
-      <div class="col-lg-8 hidden-md hidden-sm hidden-xs" >
+      <div class="col-sm-8" >
         <div class="tab-wrap">
           <!-- 美容 -->
           <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">美容</label>
@@ -348,48 +338,48 @@
             <!-- saleTotal input -->
             <div class="form-group">
               <div class="input-group aaa">
-                <label id="jpy">¥<span id="morau_saleTotal_value"></span></label>
+                <label id="jpy"><span id="morau_saleTotal_value"></span>円</label>
                 <input class="form-control input-lg morau_saleTotal" style="border:none" type="hidden" id="morau_saleTotal" name="saleTotal" required>
               </div>
             </div>
             <!-- newSeller input -->
-            <div class="form-group">
+            <div class="form-group modal_pay">
               <div class="input-group">
                 <input class="form-control input-lg" type="hidden" id="morau_newSeller" name="newSeller" required>
               </div>
             </div>
             <!-- selectCustomer input -->
-            <div class="form-group">
+            <div class="form-group modal_pay">
               <div class="input-group">
                 <input class="form-control input-lg" type="hidden" id="morau_selectCustomer" name="selectCustomer" required>
               </div>
             </div>
             <!-- newSale input -->
-            <div class="form-group">
+            <div class="form-group modal_pay">
               <div class="input-group">
                 <input class="form-control input-lg" type="hidden" id="morau_newSale" name="newSale" required>
               </div>
             </div>
             <!-- productsList input -->
-            <div class="form-group">
+            <div class="form-group modal_pay">
               <div class="input-group">
                 <input class="form-control input-lg" type="hidden" id="morau_productsList" name="productsList" required>
               </div>
             </div>
             <!-- newTaxPrice input -->
-            <div class="form-group">
+            <div class="form-group modal_pay">
               <div class="input-group">
                 <input class="form-control input-lg" type="hidden" id="morau_newTaxPrice" name="newTaxPrice" required>
               </div>
             </div>
             <!-- newNetPrice input -->
-            <div class="form-group">
+            <div class="form-group modal_pay">
               <div class="input-group">
                 <input class="form-control input-lg" type="hidden" id="morau_newNetPrice" name="newNetPrice" required>
               </div>
             </div>
             <!-- listPaymentMethod input -->
-            <div class="form-group">
+            <div class="form-group modal_pay">
               <div class="input-group">
                 <input class="form-control input-lg" type="hidden" id="morau_listPaymentMethod" name="listPaymentMethod" required>
               </div>
@@ -415,7 +405,7 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>
-          <button type="submit" class="btn btn-primary">会計をする</button>
+          <!-- <button type="submit" class="btn btn-primary">会計をする</button> -->
         </div>
       </form>
 

@@ -88,7 +88,7 @@
                 <!-- <button type="button" class="btn btn-default hidden-lg btnAddService">サービスを追加</button> -->
                 <!-- Add product button -->
                 <!-- <button type="button" class="btn btn-default hidden-lg btnAddProduct">商品を追加</button> -->
-                <hr>
+                <!-- <hr> -->
                 <div class="row">
                   <!-- Taxes and total input -->
                   <div class="col-xs-10 pull-right">
@@ -118,11 +118,11 @@
                       </tbody>
                     </table>
                   </div>
-                  <hr>
+                  <!-- <hr> -->
                 </div>
-                <hr>
+                <!-- <hr> -->
                 
-                <br>
+                <!-- <br> -->
               </div>
             </div>
             <!-- <div class="box-footer">
@@ -398,6 +398,12 @@
               </div>
               <div class="paymentMethodBoxes"></div>
               <input type="hidden" name="listPaymentMethod" id="listPaymentMethod" required>
+            </div>
+            <!-- listPaymentMethod input -->
+            <div class="form-group modal_pay">
+              <div class="input-group">
+                <input class="form-control input-lg" type="hidden" id="newCashChange" name="newCashChange" required>
+              </div>
             </div>
             
           </div>

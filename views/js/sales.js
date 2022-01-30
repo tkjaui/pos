@@ -45,7 +45,7 @@ $(".card_06").on("click", "button.addProductSale", function(){
       var price = answer["selling_price"];
 
       $(".newProduct").append(        
-        '<div class="row" style="padding:5px 15px 30px 0">'+
+        '<div class="row" style="padding:0px 15px 30px 0">'+
           
           '<div class="reji-production">'+
             '<button type="button" class="btn btn-danger btn-xs removeProduct" idProduct ="'+idProduct+'"><i class="fa fa-times"></i></button>'+
@@ -117,7 +117,7 @@ $(".card_06").on("click", "button.addServiceSale", function(){
       var price = answer["selling_price"];
 
       $(".newProduct").append(      
-        '<div class="row" style="padding:5px 15px 30px 0">'+
+        '<div class="row" style="padding:0px 15px 30px 0">'+
           
           '<div class="reji-production">'+
             '<button type="button" class="btn btn-danger btn-xs removeProduct" idService ="'+idService+'"><i class="fa fa-times"></i></button>'+
@@ -514,7 +514,7 @@ $("#newPaymentMethod").on('change',function(){
       '<div class="col-xs-4 payment_price">'+
         '<div style="font-weight:bold">お支払い金額</div>'+
         '<div class="input-group">'+
-          '<input type="text" class="form-control input-lg" id="newCashValue" name="newCashValue" placeholder="0" required>'+
+          '<input type="number" class="form-control input-lg" id="newCashValue" name="newCashValue" placeholder="0" required>'+
           '<span class="input-group-addon">円</span>'+
         '</div>'+
       '</div>'+
@@ -522,7 +522,7 @@ $("#newPaymentMethod").on('change',function(){
       '<div class="col-xs-4" id="getCashChange" style="padding-left:0px">'+
         '<div style="font-weight:bold">おつり</div>'+
         '<div class="input-group">'+
-          '<input type="text" class="form-control input-lg" id="newCashChange" placeholder="0" readonly required>'+
+          '<input type="text" class="form-control input-lg" id="newCashChange" name="newCashChange" placeholder="0" readonly required>'+
           '<span class="input-group-addon">円</span>'+
         '</div>'+
       '</div>'
@@ -566,6 +566,8 @@ $(".saleForm").on("input", 'input#newCashValue', function(){
       '<button type="submit" class="btn btn-primary">会計をする</button>'
     )
   }  
+
+  $('input#newCashChange').val(change);
   
 })
 

@@ -102,11 +102,12 @@ class ControllerSales{
       $answer = ModelSales::mdlAddSale($table, $data);
 
       if($answer == "ok"){
+
         echo '<script>
           // localStorage.removeItem("range");
           swal({
             type: "success",
-            title: "会計が完了しました",
+            title: "会計が完了しました。お釣りは'.number_format($_POST["newCashChange"]).'円です。",
             showConfirmButton: true,
             confirmButtonText: "閉じる",
 

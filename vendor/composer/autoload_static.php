@@ -30,6 +30,7 @@ class ComposerStaticInite00938e3e12473ec54ed0317319233f0
         'M' => 
         array (
             'MyCLabs\\Enum\\' => 13,
+            'Mike42\\' => 7,
             'Matrix\\' => 7,
         ),
         'C' => 
@@ -53,8 +54,8 @@ class ComposerStaticInite00938e3e12473ec54ed0317319233f0
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -67,6 +68,11 @@ class ComposerStaticInite00938e3e12473ec54ed0317319233f0
         'MyCLabs\\Enum\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
+        ),
+        'Mike42\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mike42/escpos-php/src/Mike42',
+            1 => __DIR__ . '/..' . '/mike42/gfx-php/src/Mike42',
         ),
         'Matrix\\' => 
         array (

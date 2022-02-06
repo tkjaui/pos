@@ -72,7 +72,6 @@ class ComposerStaticInite00938e3e12473ec54ed0317319233f0
         'Mike42\\' => 
         array (
             0 => __DIR__ . '/..' . '/mike42/escpos-php/src/Mike42',
-            1 => __DIR__ . '/..' . '/mike42/gfx-php/src/Mike42',
         ),
         'Matrix\\' => 
         array (

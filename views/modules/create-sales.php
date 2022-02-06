@@ -1,5 +1,19 @@
 <div class="content-wrapper">
   <section class="content">
+    <?php
+      // $str = "sakashita";
+      // $charArys = array('UTF-8', 'eucJP-win', 'SJIS-win', 'ASCII', 'EUC-JP', 'SJIS', 'JIS');
+      // $charCode = mb_detect_encoding($str);
+      // var_dump($charCode);
+
+      $string = 'えんこーど';
+      $expected_encode = mb_detect_encoding($string,  ['ASCII', 'ISO-2022-JP', 'UTF-8', 'EUC-JP', 'SJIS'], true);
+      var_dump($expected_encode);
+
+      $str = mb_convert_encoding($string, "ASCII", "auto");
+      $expected_encode2 = mb_detect_encoding($str,  ['ASCII', 'ISO-2022-JP', 'UTF-8', 'EUC-JP', 'SJIS'], true);
+      var_dump($expected_encode2);
+    ?>
     <div class="row">
       <!-- The form -->
       <div class="col-sm-4">
@@ -130,6 +144,7 @@
             </div> -->
             <div class="box-footer">
               <!-- <button class="btn btn-primary pull-left" data-toggle="modal" data-target="#addSales">支払いへ</button> -->
+              <!-- <button onclick="ajax_print('vendor/mike42/escpos-php/example/rawbt-receipt.php',this)">RECEIPT</button> -->
             </div>
           </form>
 
@@ -411,6 +426,7 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>
+          <button type="submit" class="btn btn-primary" onclick="ajax_print('vendor/mike42/escpos-php/example/rawbt-receipt.php',this)">会計をする</button>
           <!-- <button type="submit" class="btn btn-primary">会計をする</button> -->
         </div>
       </form>
@@ -423,4 +439,6 @@
     </div>
   </div>
 </div>
+
+
 

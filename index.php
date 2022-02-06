@@ -15,5 +15,7 @@ require_once "models/sales.model.php";
 require_once "models/users.model.php";
 require_once "models/services.model.php";
 
+require_once 'vendor/autoload.php';
+
 $template = new ControllerTemplate();
 $template -> ctrTemplate();

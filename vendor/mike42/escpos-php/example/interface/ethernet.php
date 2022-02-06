@@ -8,11 +8,11 @@ use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
  * address of your receipt printer, and then fsockopen() it on that port.
  */
 try {
-    $connector = new NetworkPrintConnector("10.x.x.x", 9100);
+    $connector = new NetworkPrintConnector("192.168.0.202", 9100);
     
     /* Print a "Hello world" receipt" */
     $printer = new Printer($connector);
-    $printer -> text("Hello World!\n");
+    $printer -> text("Hello World! need more 16 bytes.....\n");
     $printer -> cut();
     
     /* Close printer */

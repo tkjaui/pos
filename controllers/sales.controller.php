@@ -102,7 +102,6 @@ class ControllerSales{
       $answer = ModelSales::mdlAddSale($table, $data);
 
       if($answer == "ok"){
-
         echo '<script>
           // localStorage.removeItem("range");
           swal({

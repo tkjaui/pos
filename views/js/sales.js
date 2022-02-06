@@ -550,6 +550,28 @@ $("#newPaymentMethod").on('change',function(){
   }
 })
 
+$.ajaxSetup({
+  beforeSend : function(xhr) {
+      xhr.overrideMimeType('text/html;charset=Shift_JIS');
+  }
+});
+
+
+// for php demo call
+function ajax_print(url, btn) {
+    b = $(btn);
+    b.attr('data-old', b.text());
+    b.text('wait');
+    $.get(url, function (data) {
+      window.location.href = data;  
+    }).fail(function () {
+        alert("ajax error");
+    }).always(function () {
+        b.text(b.attr('data-old'));
+    })
+}
+
+
 // Cash change
 $(".saleForm").on("input", 'input#newCashValue', function(){
   var cash = $(this).val();
@@ -559,13 +581,14 @@ $(".saleForm").on("input", 'input#newCashValue', function(){
   newCashChange.val(change);
 
   //会計時に必要金額より少ない金額で決済されるのを防ぐため
-  if(change >= 0){
-    // console.log('jiji');
-    $('.modal-footer').html(
-      '<button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>'+
-      '<button type="submit" class="btn btn-primary">会計をする</button>'
-    )
-  }  
+  // if(change >= 0){
+    
+  //   $('.modal-footer').html(
+  //     '<button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>'+
+  //     '<button type="submit" class="btn btn-primary" onclick="ajax_print(rawbt-receipt.php,this)">会計をする</button>'+
+      
+  //   )
+  // }  
 
   $('input#newCashChange').val(change);
   

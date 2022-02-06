@@ -112,12 +112,12 @@
 
 
 
-  <script src="views/js/template.js"></script>
+  <script src="views/js/template.js" charset="UTF-8"></script>
   <script src="views/js/users.js"></script>
   <script src="views/js/categories.js"></script>
   <script src="views/js/products.js"></script>
   <script src="views/js/customers.js"></script>
-  <script src="views/js/sales.js"></script>
+  <script src="views/js/sales.js" charset="UTF-8"></script>
   <script src="views/js/reports.js"></script>
   <script src="views/js/services.js"></script>
 

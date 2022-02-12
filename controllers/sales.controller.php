@@ -1,4 +1,10 @@
 <?php 
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\PrintConnectors\RawbtPrintConnector;
+use Mike42\Escpos\CapabilityProfile;
+
+
 class ControllerSales{
   //Show sales
   static public function ctrShowSales($item, $value){
@@ -102,11 +108,20 @@ class ControllerSales{
       $answer = ModelSales::mdlAddSale($table, $data);
 
       if($answer == "ok"){
+
+        $profile = CapabilityProfile::load("POS-5890");
+        $connector = new RawbtPrintConnector();
+        $printer = new Printer($connector, $profile);
+        $printer->text("please visit example.com\n");
+        $printer->cut();
+        $printer->pulse();
+        $printer->close();
+
         echo '<script>
           // localStorage.removeItem("range");
           swal({
             type: "success",
-            title: "会計が完了しました。お釣りは'.number_format($_POST["newCashChange"]).'円です。",
+            title: "お会計が完了しました。<br>おつりは'.number_format($_POST["newCashChange"]).'円です。",
             showConfirmButton: true,
             confirmButtonText: "閉じる",
 

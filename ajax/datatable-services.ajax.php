@@ -1,5 +1,4 @@
 <?php
-
 require_once "../controllers/services.controller.php";
 require_once "../models/services.model.php";
 
@@ -14,6 +13,7 @@ class ServicesTable{
     $order = "id";
     $services = ControllerServices::ctrShowServices($item, $value, $order);
 
+  
     // var_dump($services);
     
     
@@ -32,6 +32,11 @@ class ServicesTable{
         $item = "id";
         $value = $services[$i]["id_category"];
         $categories = ControllerCategories::ctrShowCategories($item, $value);
+
+        // $str = $services[$i]["description"];
+        // $charArys = array('UTF-8', 'eucJP-win', 'SJIS-win', 'ASCII', 'EUC-JP', 'SJIS', 'JIS');
+        // $charCode = mb_detect_encoding($str, $charArys, true);
+        // var_dump($charCode);
 
         $jsonData .='[
           "'.($i+1).'",

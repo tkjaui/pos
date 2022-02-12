@@ -72,8 +72,6 @@ $(".card_06").on("click", "button.addProductSale", function(){
           '</div>'+
 
         '</div>'
-        
-        
         )
 
         // Adding total prices
@@ -87,6 +85,12 @@ $(".card_06").on("click", "button.addProductSale", function(){
 
         //Format products price
         $(".newProductPrice").number(true);
+
+        //レシート
+        $("#receipt_description").append(      
+          '<div>'+description+
+          '<br>                   1 x '+price+'円</div>'
+      )
 
     }
   })
@@ -159,9 +163,21 @@ $(".card_06").on("click", "button.addServiceSale", function(){
         //Format products price
         $(".newProductPrice").number(true);
 
+        //レシート
+        $("#receipt_description").append(      
+            '<div>'+description+
+            '<br>                   1 x '+price+'円</div>'
+        )
+
+        
+        
+
     }
   })
 });
+
+
+
 
 //When table loads everytime that navigate in it
 $(".salesTable").on("draw.dt", function(){
@@ -550,12 +566,20 @@ $("#newPaymentMethod").on('change',function(){
   }
 })
 
-$.ajaxSetup({
-  beforeSend : function(xhr) {
-      xhr.overrideMimeType('text/html;charset=Shift_JIS');
-  }
-});
+// $.ajaxSetup({
+//   beforeSend : function(xhr) {
+//       xhr('text/html;charset=UTF-8');
+//   }
+// });
 
+
+
+function BtPrint(prn){
+  var S = "#Intent;scheme=rawbt;";
+  var P =  "package=ru.a402d.rawbtprinter;end;";
+  var textEncoded = encodeURI(prn);
+  window.location.href="intent:"+textEncoded+S+P;
+}
 
 // for php demo call
 function ajax_print(url, btn) {
@@ -569,6 +593,11 @@ function ajax_print(url, btn) {
     }).always(function () {
         b.text(b.attr('data-old'));
     })
+
+    // var S = "#Intent;scheme=rawbt;";
+    // var P =  "package=ru.a402d.rawbtprinter;end;";
+    // var textEncoded = encodeURI(prn);
+    // window.location.href="intent:"+textEncoded+S+P;
 }
 
 
@@ -593,6 +622,21 @@ $(".saleForm").on("input", 'input#newCashValue', function(){
   $('input#newCashChange').val(change);
   
 })
+
+// レシート お預かり金額とお釣り  
+$(".saleForm").on("change", 'input#newCashValue', function(){
+  var cash = $(this).val();
+  var change = Number(cash) - Number($('#saleTotal').val());
+
+  $("div#receipt_oazukari").append(      
+    '<div>                      '+cash+'円</div>'
+  )
+
+  $("div#newCashChange").append(      
+    '<div>                      '+change+'円</div>'
+  )
+})
+
 
 //Change transaction code
 $('.box-body').on("change", "input#newTransactionCode", function(){
@@ -781,6 +825,11 @@ $('#addSales').on('show.bs.modal', function (event) {
   var saleTotalItem = $('#saleTotal');
   var saleTotal = saleTotalItem.val();
 
+  // レシートの合計金額
+  $("#receipt_total").append(      
+    '<div>                      '+saleTotal+'円</div>'
+  )
+
   //newSellerを取得
   var newSellerItem = $('#newSeller');
   var newSeller = newSellerItem.val();
@@ -796,6 +845,10 @@ $('#addSales').on('show.bs.modal', function (event) {
   //productsListを取得
   var productsListItem = $('#productsList');
   var productsList = productsListItem.val();
+
+  //productsList2を取得
+  var productsListItem2 = $('#productsList');
+  var productsList2 = productsListItem2.val();
 
   //newTaxPriceを取得
   var newTaxPriceItem = $('#newTaxPrice');
@@ -820,6 +873,10 @@ $('#addSales').on('show.bs.modal', function (event) {
   modal.find('.modal-body #morau_newTaxPrice').val(newTaxPrice); 
   modal.find('.modal-body #morau_newNetPrice').val(newNetPrice); 
   modal.find('.modal-body #morau_listPaymentMethod').val(listPaymentMethod); 
+
+  //レシート
+  modal.find('#morau_productsList2').val(productsList2); 
+  modal.find('#morau_productsList2').text(productsList2); 
 });
 
 $("#newSeller").on("change", function(){

@@ -1,12 +1,13 @@
 <div class="content-wrapper">
   <section class="content">
+    <!-- <?php phpinfo(); ?> -->
     <?php
       // $str = "sakashita";
       // $charArys = array('UTF-8', 'eucJP-win', 'SJIS-win', 'ASCII', 'EUC-JP', 'SJIS', 'JIS');
       // $charCode = mb_detect_encoding($str);
       // var_dump($charCode);
 
-      $string = 'えんこーど';
+      $string = 'サカシタ理容と美容の店';
       $expected_encode = mb_detect_encoding($string,  ['ASCII', 'ISO-2022-JP', 'UTF-8', 'EUC-JP', 'SJIS'], true);
       var_dump($expected_encode);
 
@@ -142,9 +143,9 @@
             <!-- <div class="box-footer">
               <button type="submit" class="btn btn-primary pull-left">会計をする</button>
             </div> -->
+            <button style="margin-left:10px;" type="button" class="btn btn-primary" onclick="ajax_print('views/modules/receipt.php',this)">レジOPEN</button>
             <div class="box-footer">
               <!-- <button class="btn btn-primary pull-left" data-toggle="modal" data-target="#addSales">支払いへ</button> -->
-              <!-- <button onclick="ajax_print('vendor/mike42/escpos-php/example/rawbt-receipt.php',this)">RECEIPT</button> -->
             </div>
           </form>
 
@@ -426,9 +427,34 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>
-          <button type="submit" class="btn btn-primary" onclick="ajax_print('vendor/mike42/escpos-php/example/rawbt-receipt.php',this)">会計をする</button>
+          <!-- <button type="submit" class="btn btn-primary" onclick="ajax_print('vendor/mike42/escpos-php/example/rawbt-receipt.php',this)">会計をする</button> -->
+          <button type="button" class="btn btn-primary" onclick="ajax_print('views/modules/receipt.php',this)">レジOPEN</button>
+          <button type="submit" class="btn btn-primary" onclick="BtPrint(document.getElementById('pre_print').innerText);">会計をする</button>
+          
           <!-- <button type="submit" class="btn btn-primary">会計をする</button> -->
         </div>
+      
+
+        <pre id="pre_print">
+      サカシタ理容と美容の店
+
+      〒031-0814
+      八戸市妙向野場2-1
+      TEL:0178-25-3455
+
+      <?php echo date("Y-m-d H:i:s"); ?>
+
+        -----------------------------
+        <div id="receipt_description"></div> 
+        *****************************
+合計 <div id="receipt_total"></div> 
+お預り金額 <div id="receipt_oazukari"></div> 
+おつり <div id="newCashChange"></div> 
+        </pre>
+
+        <!-- <button type="button" onclick="BtPrint(document.getElementById('pre_print').innerText)">
+          プリント
+        </button> -->
       </form>
 
       <?php

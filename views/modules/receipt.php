@@ -11,4 +11,6 @@ $connector = new RawbtPrintConnector();
 $printer = new Printer($connector);
 
 $printer->pulse();
+$printer->cut();
+
 $printer->close();

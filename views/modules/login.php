@@ -2,7 +2,7 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <img src="views/img/template/logo-blanco-bloque.png" class="img-responsive" style="padding:30px 100px 0 100px">
+    サカシタ理容と美容の店<br>POSシステム
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

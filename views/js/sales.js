@@ -120,12 +120,26 @@ $(".card_06").on("click", "button.addServiceSale", function(){
       var description = answer["description"];
       var price = answer["selling_price"];
 
+      var idCategory = answer["id_category"];
+      var data = new FormData();
+      data.append("idCategory", idCategory);
+      $.ajax({
+        url: "ajax/categories.ajax.php",
+    method: "POST",
+    data: data,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(answer){
+      var categories = answer["Category"];
+      
       $(".newProduct").append(      
         '<div class="row" style="padding:0px 15px 30px 0">'+
           
           '<div class="reji-production">'+
             '<button type="button" class="btn btn-danger btn-xs removeProduct" idService ="'+idService+'"><i class="fa fa-times"></i></button>'+
-            '<input type="text" style="border:none" class="newProductDescription" idService="'+idService+'" name="addServiceSale" value="'+description+'" required></input>'+          
+            '<input type="text" style="border:none" class="newProductDescription" idService="'+idService+'" name="addServiceSale" value="'+categories+' '+description+'" required></input>'+          
           '</div>'+
 
           '<div class="quantityAndPrice ">'+
@@ -165,9 +179,16 @@ $(".card_06").on("click", "button.addServiceSale", function(){
 
         //レシート
         $("#receipt_description").append(      
-            '<div>'+description+
+            '<div>'+categories+' '+description+
             '<br>                   1 x '+price+'円</div>'
         )
+    }
+      })
+      
+
+      
+
+      
 
         
         

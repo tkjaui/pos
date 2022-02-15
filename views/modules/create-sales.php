@@ -164,7 +164,7 @@
           <div class="tab-content">
 
           <?php
-            $colors = array("#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900");
+            $colors = array("#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900");
 
             $item = null;
             $value = null;
@@ -172,7 +172,8 @@
               // var_dump($categories[0]["Category"]);
               for($i=0; $i<count($categories); $i++){
                 if($categories[$i]["id"] <= 12 ||
-                  $categories[$i]["id"] == 25 ){
+                  $categories[$i]["id"] == 25 ||
+                  $categories[$i]["id"] >= 40){
                   echo '<div class="product" >
                   <div class="l-wrapper_02 card-radius_02" style="background-color: '.$colors[$i].'">
                   <p class="card__title_02" value="'.$categories[$i]["id"].'"  ;>'.$categories[$i]["Category"].'</p>

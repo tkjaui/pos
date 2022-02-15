@@ -15,13 +15,15 @@ $('.servicesTable').DataTable({
   "processing": true
 });
 
+
 // // Getting category to assign a code
 $('#newCategory').change(function(){
   var idCategory = $(this).val();
-  console.log(idCategory);
+  // console.log(idCategory);
   var data = new FormData();
   data.append("idCategory", idCategory);
 
+  
   $.ajax({
     url: "ajax/services.ajax.php",
     method: "POST",

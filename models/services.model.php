@@ -5,7 +5,7 @@ class ServicesModel{
   //Show Services
   static public function mdlShowServices($table, $item, $value, $order){
     if($item != null){
-      $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id ASC");
+      $stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id DESC");
       $stmt -> bindParam(":".$item, $value, PDO::PARAM_STR);
       $stmt -> execute();
       return $stmt -> fetch();

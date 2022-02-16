@@ -19,8 +19,7 @@ class ControllerProducts{
   //Create products
   static public function ctrCreateProducts(){
     if(isset($_POST["newDescription"])){
-      if(preg_match('/^[a-zA-Z0-9ぁ-んァ-ヶ一-龠々.()II-]+$/', $_POST["newDescription"])&&
-         preg_match('/^[0-9.-]+$/', $_POST["newBuyingPrice"])&&
+      if(preg_match('/^[0-9.-]+$/', $_POST["newBuyingPrice"])&&
          preg_match('/^[0-9.]+$/', $_POST["newSellingPrice"])){
 
           //Validate image
@@ -101,8 +100,7 @@ class ControllerProducts{
   //Edit product
   static public function ctrEditProducts(){
 		if(isset($_POST["editDescription"])){
-			if(preg_match('/^[a-zA-Z0-9ぁ-んァ-ヶ一-龠々.()II-]+$/', $_POST["editDescription"]) &&
-			   preg_match('/^[0-9.-]+$/', $_POST["editBuyingPrice"]) &&
+			if(preg_match('/^[0-9.-]+$/', $_POST["editBuyingPrice"]) &&
 			   preg_match('/^[0-9.]+$/', $_POST["editSellingPrice"])){
           //  validate image
           $route = $_POST["currentImage"];

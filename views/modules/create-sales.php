@@ -1,20 +1,6 @@
 <div class="content-wrapper">
   <section class="content">
-    <!-- <?php phpinfo(); ?> -->
-    <?php
-      // $str = "sakashita";
-      // $charArys = array('UTF-8', 'eucJP-win', 'SJIS-win', 'ASCII', 'EUC-JP', 'SJIS', 'JIS');
-      // $charCode = mb_detect_encoding($str);
-      // var_dump($charCode);
-
-      $string = 'サカシタ理容と美容の店';
-      $expected_encode = mb_detect_encoding($string,  ['ASCII', 'ISO-2022-JP', 'UTF-8', 'EUC-JP', 'SJIS'], true);
-      var_dump($expected_encode);
-
-      $str = mb_convert_encoding($string, "ASCII", "auto");
-      $expected_encode2 = mb_detect_encoding($str,  ['ASCII', 'ISO-2022-JP', 'UTF-8', 'EUC-JP', 'SJIS'], true);
-      var_dump($expected_encode2);
-    ?>
+    
     <div class="row">
       <!-- The form -->
       <div class="col-sm-4">
@@ -173,7 +159,7 @@
               for($i=0; $i<count($categories); $i++){
                 if($categories[$i]["id"] <= 12 ||
                   $categories[$i]["id"] == 25 ||
-                  $categories[$i]["id"] >= 40){
+                  40 <= $categories[$i]["id"] && $categories[$i]["id"] <= 53){
                   echo '<div class="product" >
                   <div class="l-wrapper_02 card-radius_02" style="background-color: '.$colors[$i].'">
                   <p class="card__title_02" value="'.$categories[$i]["id"].'"  ;>'.$categories[$i]["Category"].'</p>
@@ -239,14 +225,15 @@
             <div class="box-header with-boader"></div> -->
             <div class="tab-content">
             <?php
-            $colors = array("#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900");
+            $colors = array("#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900","#ffccff","#ffcc33","yellow","aqua","#ff99ff","#ff9900");
 
             $item = null;
             $value = null;
             $categories = controllerCategories::ctrShowCategories($item, $value);
               // var_dump($categories[0]["Category"]);
               for($i=0; $i<count($categories); $i++){
-                if(28 <= $categories[$i]["id"] && $categories[$i]["id"] <= 35){
+                if(28 <= $categories[$i]["id"] && $categories[$i]["id"] <= 35 ||
+                54 <= $categories[$i]["id"] && $categories[$i]["id"] <= 59){
                   echo '<div class="product" >
                   <div class="l-wrapper_02 card-radius_02" style="background-color: '.$colors[$i].'">
                   <p class="card__title_02" value="'.$categories[$i]["id"].'"  ;>'.$categories[$i]["Category"].'</p>
@@ -259,8 +246,11 @@
                 foreach ($products as $key => $value) { 
                     echo '<div class="l-wrapper_06">
                     <div class="card_06" style="border: 3px solid '.$colors[$i].'">
-                      <button class="card-content_06 addProductSale recoverButton" idProduct="'.$value["id"].'" >'.$value["description"].'</button>
+                      
+                      <button class="card-content_06 addProductSale recoverButton" idProduct="'.$value["id"].'" ><img src="'.$value["image"].'"></button>
+                      
                     </div>
+                    
                   </div>'; 
                 }
                 echo '</div>' ;

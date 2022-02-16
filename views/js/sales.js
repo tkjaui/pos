@@ -125,45 +125,45 @@ $(".card_06").on("click", "button.addServiceSale", function(){
       data.append("idCategory", idCategory);
       $.ajax({
         url: "ajax/categories.ajax.php",
-    method: "POST",
-    data: data,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "json",
-    success: function(answer){
-      var categories = answer["Category"];
-      
-      $(".newProduct").append(      
-        '<div class="row" style="padding:0px 15px 30px 0">'+
+        method: "POST",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(answer){
+          var categories = answer["Category"];
           
-          '<div class="reji-production">'+
-            '<button type="button" class="btn btn-danger btn-xs removeProduct" idService ="'+idService+'"><i class="fa fa-times"></i></button>'+
-            '<input type="text" style="border:none" class="newProductDescription" idService="'+idService+'" name="addServiceSale" value="'+categories+' '+description+'" required></input>'+          
-          '</div>'+
-
-          '<div class="quantityAndPrice ">'+
-          
-            '<div class="col-xs-5 enterPrice pull-right">'+
-              '<div class="input-group">'+
-                '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
-                '<span class="input-group-addon">円</span>'+
+          $(".newProduct").append(      
+            '<div class="row" style="padding:0px 15px 30px 0">'+
+              
+              '<div class="reji-production">'+
+                '<button type="button" class="btn btn-danger btn-xs removeProduct" idService ="'+idService+'"><i class="fa fa-times"></i></button>'+
+                '<input type="text" style="border:none" class="newProductDescription" idService="'+idService+'" name="addServiceSale" value="'+categories+' '+description+'" required></input>'+          
               '</div>'+
-            '</div>'+
 
-            '<div class="col-xs-1 X pull-right">'+
-              '✖︎'+
-            '</div>'+
+              '<div class="quantityAndPrice ">'+
+              
+                '<div class="col-xs-5 enterPrice pull-right">'+
+                  '<div class="input-group">'+
+                    '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
+                    '<span class="input-group-addon">円</span>'+
+                  '</div>'+
+                '</div>'+
 
-            '<div class="col-xs-3 pull-right">'+
-              '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" required>'+
-            '</div>'+
+                '<div class="col-xs-1 X pull-right">'+
+                  '✖︎'+
+                '</div>'+
 
-          '</div>'+
+                '<div class="col-xs-3 pull-right">'+
+                  '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" required>'+
+                '</div>'+
 
-        '</div>'
-        
-        )
+              '</div>'+
+
+            '</div>'
+            
+            )
 
         // Adding total prices
         addingTotalPrices();

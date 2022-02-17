@@ -56,7 +56,7 @@ $(".card_06").on("click", "button.addProductSale", function(){
           
             '<div class="col-xs-5 enterPrice pull-right">'+
               '<div class="input-group">'+
-                '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
+                '<input type="number" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
                 '<span class="input-group-addon">円</span>'+
               '</div>'+
             '</div>'+
@@ -146,7 +146,7 @@ $(".card_06").on("click", "button.addServiceSale", function(){
               
                 '<div class="col-xs-5 enterPrice pull-right">'+
                   '<div class="input-group">'+
-                    '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
+                    '<input type="number" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
                     '<span class="input-group-addon">円</span>'+
                   '</div>'+
                 '</div>'+
@@ -644,7 +644,7 @@ $(".saleForm").on("input", 'input#newCashValue', function(){
   
 })
 
-// レシート お預かり金額とお釣り  
+// レシート お預り金額とお釣り  
 $(".saleForm").on("change", 'input#newCashValue', function(){
   var cash = $(this).val();
   var change = Number(cash) - Number($('#saleTotal').val());

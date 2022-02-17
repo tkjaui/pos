@@ -4,7 +4,7 @@ class ControllerCategories{
   //create categories
   static public function ctrCreateCategory(){
     if(isset($_POST["newCategory"])){
-      if(preg_match('/^[a-zA-Z0-9ぁ-んァ-ヶ一-龠々]+$/', $_POST["newCategory"])){
+      
         $table = 'categories';
         $data = $_POST['newCategory'];
         $answer = CategoriesModel::mdlAddCategory($table, $data);
@@ -23,20 +23,7 @@ class ControllerCategories{
             });
           </script>';
         }
-      } else {
-        echo '<script>
-          swal({
-            type: "error",
-            title: "特殊な文字や空欄は使えません。",
-            showConfirmButton: true,
-            confirmButtonText: "閉じる"
-          }).then(function(result){
-            if(result.value){
-              window.location = "categories";
-            }
-          });
-        </script>';
-      }
+      
     }
   }
 
@@ -50,7 +37,7 @@ class ControllerCategories{
   //Edit category
   static public function ctrEditCategory(){
     if(isset($_POST["editCategory"])){
-      if(preg_match('/^[a-zA-Z0-9ぁ-んァ-ヶ一-龠々]+$/', $_POST["editCategory"])){
+      
         $table = "categories";
         $data = array("Category"=>$_POST["editCategory"], "id"=>$_POST["idCategory"]);
         $answer = CategoriesModel::mdlEditCategory($table, $data);
@@ -69,20 +56,7 @@ class ControllerCategories{
             });
           </script>';
         } 
-      } else {
-        echo '<script>
-          swal({
-            type: "error",
-            title: "特殊な文字や空欄は使えません。",
-            showConfirmButton: true,
-            confirmButtonText: "閉じる"
-          }).then(function(result){
-            if(result.value){
-              window.location = "categories";
-            }
-          });
-        </script>';
-      }
+      
     }
   }
 

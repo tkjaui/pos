@@ -1026,7 +1026,7 @@ $(".shokaiwari").on("click", function(){
 
         //レシート
         $("#receipt_description").append(      
-            '<div>'+categories+' '+description+
+            '<div idService="'+idService+'">'+categories+' '+description+
             '<br>                   1 x '+price+'円</div>'
         )
     }
@@ -1119,7 +1119,7 @@ $(".15off").on("click", function(){
 
         //レシート
         $("#receipt_description").append(      
-            '<div>'+categories+' '+description+
+            '<div idService="'+idService+'">'+categories+' '+description+
             '<br>                   1 x '+discountPrice+'円</div>'
         )
     }
@@ -1136,7 +1136,7 @@ $(".box-body").on("click", "button.removeProduct", function(){
   // console.log(idService);
   var elems = document.getElementById('receipt_description').querySelector('[idService="'+idService+'"]');
   var elems2 = document.getElementById('receipt_description').querySelector('[idProduct="'+idProduct+'"]');
-  // console.log(elems);
+  console.log(elems);
   if(elems){
     elems.remove();
   } else {

@@ -20,8 +20,7 @@ class ControllerServices{
   //Create services
   static public function ctrCreateServices(){
     if(isset($_POST["newDescription"])){
-      if(preg_match('/^[a-zA-Z0-9ぁ-んァ-ヶ一-龠々.()]+$/', $_POST["newDescription"])&&
-         preg_match('/^[0-9.]+$/', $_POST["newSellingPrice"])){
+      if(preg_match('/^[a-zA-Z0-9ぁ-んァ-ヶ一-龠々.()% ]+$/', $_POST["newDescription"])){
 
           $table = "services";
           $data = array("id_category" => $_POST["newCategory"],
@@ -66,8 +65,7 @@ class ControllerServices{
   //Edit Services
   static public function ctrEditServices(){
 		if(isset($_POST["editDescription"])){
-			if(preg_match('/^[a-zA-Z0-9ぁ-んァ-ヶ一-龠々.()]+$/', $_POST["editDescription"]) &&
-			   preg_match('/^[0-9.]+$/', $_POST["editSellingPrice"])){
+			if(preg_match('/^[a-zA-Z0-9ぁ-んァ-ヶ一-龠々.()% ]+$/', $_POST["editDescription"])){
           
          $table = "services";
          $data = array("id_category" => $_POST["editCategory"],

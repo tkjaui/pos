@@ -54,6 +54,7 @@
                 }                
                 $answer = ControllerSales::ctrSalesDatesRange($initialDate, $finalDate);
 
+
                 foreach($answer as $key => $value){
                   echo 
                   '<tr>
@@ -71,24 +72,25 @@
                   echo '<td>'.$userAnswer["name"].'</td>
                   <td>'.$value["paymentMethod"].'</td>';
 
-                  
-
                   //test
                   $test = [];
+                  $category = [];
                   // echo $value["products"];
                   preg_match_all('/"id":"(\w+)/', $value["products"], $match_id);
                   preg_match_all('/"id_2":"(\w+)/', $value["products"], $match_id2);
                   preg_match_all('/"totalPrice":"(\w+)/', $value["products"], $match_totalPrice);
-                  
+                  preg_match_all('/"idCategory":"(\w+)/', $value["products"], $match_idCategory);
+                  // var_dump($match_idCategory);
+
                   //初めの1はidがつくかつかないか、次の1は配列の順番  最後の数字を$iとかにする？   
                   for($i=0; $i<count($match_id[1]); $i++){
                     if($match_id2[1][$i] == "addProductSale"){
+                      // var_dump($match_id2[1][$i]);
                       // array_push($test, [$match_id[1][$i], $match_id2[1][$i]]);
                       $itemProduct = "id";
                       $valueProduct = $match_id[1][$i];
                       $order = "id";
                       $productAnswer = ControllerProducts::ctrShowProducts($itemProduct, $valueProduct, $order);
-                      // echo '<td>'.$productAnswer["description"].'</td>';
                       array_push($test, $productAnswer["description"]);
                     }if($match_id2[1][$i] == "addServiceSale"){
                       // array_push($test, [$match_id[1][$i], $match_id2[1][$i]]);
@@ -99,11 +101,18 @@
                       // echo '<td>'.$serviceAnswer["description"].'</td>';
                       array_push($test, $serviceAnswer["description"]);
                     }
+
+                    $itemCategory = "id";
+                    $valueCategory = $match_idCategory[1][$i];
+                    $order = "id";
+                    $categoryAnswer = ControllerCategories::ctrShowCategories($itemCategory, $valueCategory, $order);
+                    array_push($category, $categoryAnswer["Category"]);
                   }
+                  // var_dump($category);
 
                   echo '<td>';
                   for($i=0; $i<count($test); $i++){
-                    echo $test[$i].'<br>';
+                    echo $category[$i].'&nbsp;'.$test[$i].'<br>';
                   }
                   echo '</td>';
                   
@@ -122,11 +131,9 @@
                   <td>¥'.number_format($value["totalPrice"]).'</td>
                   <td>
                     <div class="btn-group">';
-                      
-
                       if($_SESSION["profile"] == "管理者"){
                         echo '
-                        <button class="btn btn-warning btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                        
                         <button class="btn btn-danger btnDeleteSale" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>';
                       }
                     echo '  

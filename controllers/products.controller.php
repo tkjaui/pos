@@ -15,6 +15,7 @@ class ControllerProducts{
     $answer = productsModel::mdlShowProductsFromRegi($table, $item, $value, $order);
     return $answer;
   }
+  
 
   //Create products
   static public function ctrCreateProducts(){

@@ -87,7 +87,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-              <input class="form-control input-lg" type="number" inputmode="numeric" id="newSellingPrice" name="newSellingPrice" step="any" min="0" placeholder="料金" required>
+              <input class="form-control input-lg" type="number" inputmode="numeric" id="newSellingPrice" name="newSellingPrice" step="any" placeholder="料金" required>
             </div>      
           </div>
         </div>    

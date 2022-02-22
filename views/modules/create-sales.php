@@ -134,6 +134,8 @@
               <!-- <button class="btn btn-primary pull-left" data-toggle="modal" data-target="#addSales">支払いへ</button> -->
             </div>
           </form>
+          <button class="pull-right btn btn-danger shokaiwari " type="button" style="margin-left:10px;margin-top:10px;" idService="171">紹介割引 500円off</button>
+          <button class="pull-right btn btn-danger 15off " type="button" style="margin-top:10px;" idService="172">初回割引 15%off</button>
 
           <?php
             // $saveSale = new ControllerSales();
@@ -141,6 +143,7 @@
           ?>
 
         </div>
+        
       </div>
       <!-- Products table -->
       <div class="col-sm-8" >

@@ -239,6 +239,7 @@ class ControllerSales{
         $dateCustomer_2 = ModelCustomers::mdlUpdateCustomer($tableCustomers_2, $item1b_2, $value1b_2, $value_2);  
       }
 
+      
       // Product sum price
       preg_match_all('/"id_2":"(\w+)/', $productsList, $match_id2);
       preg_match_all('/"totalPrice":"(\w+)/', $productsList, $match_totalPrice);

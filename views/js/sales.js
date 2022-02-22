@@ -43,13 +43,14 @@ $(".card_06").on("click", "button.addProductSale", function(){
       var description = answer["description"];
       var stock = answer["stock"];
       var price = answer["selling_price"];
+      var idCategory = answer["id_category"];
 
       $(".newProduct").append(        
         '<div class="row" style="padding:0px 15px 30px 0">'+
           
           '<div class="reji-production">'+
             '<button type="button" class="btn btn-danger btn-xs removeProduct" idProduct ="'+idProduct+'"><i class="fa fa-times"></i></button>'+
-            '<input type="text" style="border:none" class="newProductDescription" idProduct="'+idProduct+'" name="addProductSale" value="'+description+'" required></input>'+          
+            '<input type="text" style="border:none" class="newProductDescription" idProduct="'+idProduct+'" name="addProductSale" value="'+description+'" idCategory="'+idCategory+'" required></input>'+          
           '</div>'+
 
           '<div class="quantityAndPrice ">'+
@@ -99,8 +100,39 @@ $(".card_06").on("click", "button.addProductSale", function(){
 
 //Adding services to the sale from the regi
 $(".card_06").on("click", "button.addServiceSale", function(){
+  // 15%OFFがすでにあるか検索
+  // var input = document.getElementById("productsList").value;
+  // let targetStr = '"id":"172"';
+  // let result = input.indexOf(targetStr);
+  // console.log(result);
+
+  //もし15％OFFがあれば
+  // if(result == -1){
+    // 15%引き以外の合計を再度計算
+    // var totalPrice = $('#newSaleTotal').attr('totalSale');
+    // var discountPrice = 0 - Number(totalPrice * 0.15);
+  //   addingTotalPrices();
+  // }
+
+  //   const paragraph = input;
+  //   const regex = /"id":"172"/g;
+  //   const found = paragraph.match(regex);
+
+    // console.log(found);
+    
+    // if(!found){
+      
+    // }
+    
+    
+
+
+    // addingTotalPrices15()
+    //１５％引きの金額を再度計算
+    //合計金額を再度計算
+  // }
+
   var idService = $(this).attr("idService");
-  // console.log(idService);
   $(this).removeClass("btn-primary addServiceSale");
   $(this).addClass("btn-default");
 
@@ -139,7 +171,7 @@ $(".card_06").on("click", "button.addServiceSale", function(){
               
               '<div class="reji-production">'+
                 '<button type="button" class="btn btn-danger btn-xs removeProduct" idService ="'+idService+'"><i class="fa fa-times"></i></button>'+
-                '<input type="text" style="border:none" class="newProductDescription" idService="'+idService+'" name="addServiceSale" value="'+categories+' '+description+'" required></input>'+          
+                '<input type="text" style="border:none" class="newProductDescription" idService="'+idService+'" name="addServiceSale" value="'+categories+' '+description+'" idCategory="'+idCategory+'" required></input>'+          
               '</div>'+
 
               '<div class="quantityAndPrice ">'+
@@ -514,7 +546,28 @@ function addingTotalPrices(){
   $('#saleTotal').val(addingTotalPrice);
   $('#newSaleTotal').attr('totalSale', addingTotalPrice);
 
-  // console.log(priceItem);
+  // console.log(arrayAdditionPrice);
+}
+
+//Price addition 15%OFF以外
+function addingTotalPrices15(){
+  var input = document.getElementById("productsList").value;
+  let targetStr = '"id":"172"';
+  let result = input.indexOf(targetStr);
+  console.log(result);
+
+  //もし15％OFFがなければ
+  if(result == -1){
+    var priceItem = $('.newProductPrice') ;
+    var arrayAdditionPrice = [];
+  
+    
+    arrayAdditionPrice.push(Number($(priceItem).val()));
+    
+  
+    // console.log(arrayAdditionPrice);
+  } 
+  
 }
 
 //Add Tax
@@ -671,6 +724,7 @@ function listProducts(){
   var description = $(".newProductDescription");
   var quantity = $('.newProductQuantity');
   var price = $('.newProductPrice');
+  
 
   for(var i=0; i < description.length; i++){
     productsList.push({
@@ -679,7 +733,8 @@ function listProducts(){
       "quantity": $(quantity[i]).val(),
       "price": $(price[i]).attr("realPrice"),
       "totalPrice": $(price[i]).val(),
-      "id_2": $(description[i]).attr("name")
+      "id_2": $(description[i]).attr("name"),
+      "idCategory": $(description[i]).attr('idCategory')
     })
   }
   // console.log(productsList);
@@ -906,10 +961,193 @@ $("#newSeller").on("change", function(){
   )
 })
 
+// 紹介割ボタン
+$(".shokaiwari").on("click", function(){
+  var idService = $(this).attr("idService");
+  $(this).removeClass("btn-danger addServiceSale");
+  $(this).addClass("btn-default");
+
+  var data = new FormData();
+  data.append("idService", idService);
+
+  $.ajax({
+    url: "ajax/services.ajax.php",
+    method: "POST",
+    data: data,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(answer){
+      // console.log(answer);
+      var description = answer["description"];
+      var price = answer["selling_price"];
+
+      var idCategory = answer["id_category"];
+      var data = new FormData();
+      data.append("idCategory", idCategory);
+      $.ajax({
+        url: "ajax/categories.ajax.php",
+        method: "POST",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(answer){
+          var categories = answer["Category"];
+          
+          $(".newProduct").append(      
+            '<div class="row" style="padding:0px 15px 30px 0">'+
+              
+              '<div class="reji-production">'+
+                '<button type="button" class="btn btn-danger btn-xs removeProduct" idService ="'+idService+'"><i class="fa fa-times"></i></button>'+
+                '<input type="text" style="border:none" class="newProductDescription" idService="'+idService+'" name="addServiceSale" value="'+categories+' '+description+'" required></input>'+          
+              '</div>'+
+
+              '<div class="quantityAndPrice ">'+
+              
+                '<div class="col-xs-5 enterPrice pull-right">'+
+                  '<div class="input-group">'+
+                    '<input type="number" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" id="newProductPrice" value="'+price+'"  required>'+
+                    '<span class="input-group-addon">円</span>'+
+                  '</div>'+
+                '</div>'+
+
+                '<div class="col-xs-1 X pull-right">'+
+                  '✖︎'+
+                '</div>'+
+
+                '<div class="col-xs-3 pull-right">'+
+                  '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" required>'+
+                '</div>'+
+
+              '</div>'+
+
+            '</div>'
+            
+            )
+
+        // Adding total prices
+        addingTotalPrices();
+
+        //Add Tax
+        addTax()
+
+        //Group products in json format
+        listProducts()
+
+        //Format products price
+        $(".newProductPrice").number(true);
+
+        //レシート
+        $("#receipt_description").append(      
+            '<div>'+categories+' '+description+
+            '<br>                   1 x '+price+'円</div>'
+        )
+    }
+      })
+    }
+  })
+});
+
+
+// 初回15%off割引ボタン
+$(".15off").on("click", function(){
+  var totalPrice = $('#newSaleTotal').attr('totalSale');
+  var discountPrice = 0 - Number(totalPrice * 0.15);
+
+  var idService = $(this).attr("idService");
+  $(this).removeClass("btn-danger addServiceSale");
+  $(this).addClass("btn-default");
+
+  var data = new FormData();
+  data.append("idService", idService);
+
+  $.ajax({
+    url: "ajax/services.ajax.php",
+    method: "POST",
+    data: data,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(answer){
+      var description = answer["description"];
+      // var price = answer["selling_price"];
+
+      var idCategory = answer["id_category"];
+      var data = new FormData();
+      data.append("idCategory", idCategory);
+      $.ajax({
+        url: "ajax/categories.ajax.php",
+        method: "POST",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(answer){
+          var categories = answer["Category"];
+          
+          $(".newProduct").append(      
+            '<div class="row" style="padding:0px 15px 30px 0">'+
+              
+              '<div class="reji-production">'+
+                '<button type="button" class="btn btn-danger btn-xs removeProduct" idService ="'+idService+'"><i class="fa fa-times"></i></button>'+
+                '<input type="text" style="border:none" class="newProductDescription" idService="'+idService+'" name="addServiceSale" value="'+categories+' '+description+'" required></input>'+          
+              '</div>'+
+
+              '<div class="quantityAndPrice ">'+
+              
+                '<div class="col-xs-5 enterPrice pull-right">'+
+                  '<div class="input-group">'+
+                    '<input type="number" class="form-control newProductPrice" realPrice="'+discountPrice+'" name="newProductPrice" id="newProductPrice" value="'+discountPrice+'"  required>'+
+                    '<span class="input-group-addon">円</span>'+
+                  '</div>'+
+                '</div>'+
+
+                '<div class="col-xs-1 X pull-right">'+
+                  '✖︎'+
+                '</div>'+
+
+                '<div class="col-xs-3 pull-right">'+
+                  '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" required>'+
+                '</div>'+
+
+              '</div>'+
+
+            '</div>'
+            
+            )
+
+        // Adding total prices
+        addingTotalPrices();
+
+        //Add Tax
+        addTax()
+
+        //Group products in json format
+        listProducts()
+
+        //Format products price
+        $(".newProductPrice").number(true);
+
+        //レシート
+        $("#receipt_description").append(      
+            '<div>'+categories+' '+description+
+            '<br>                   1 x '+discountPrice+'円</div>'
+        )
+    }
+      })
+    }
+  })
+});
 
 
 
-
-
-
+$(".box-body").on("click", "button.removeProduct", function(){
+  console.log('jiji');
+  $("#receipt_description").remove();
+})
 

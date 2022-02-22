@@ -1132,9 +1132,16 @@ $(".15off").on("click", function(){
 //レジで削除したらレシートの項目も削除する
 $(".box-body").on("click", "button.removeProduct", function(){
   var idService = $(this).attr("idService");
+  var idProduct = $(this).attr("idProduct");
   // console.log(idService);
   var elems = document.getElementById('receipt_description').querySelector('[idService="'+idService+'"]');
+  var elems2 = document.getElementById('receipt_description').querySelector('[idProduct="'+idProduct+'"]');
   // console.log(elems);
-  elems.remove();
+  if(elems){
+    elems.remove();
+  } else {
+    elems2.remove();
+  }
+  
 })
 

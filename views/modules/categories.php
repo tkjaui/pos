@@ -134,3 +134,4 @@
   $deleteCategory = new ControllerCategories();
   $deleteCategory -> ctrDeleteCategory();
 ?>
+

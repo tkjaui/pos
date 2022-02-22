@@ -5,14 +5,6 @@ if(localStorage.getItem("captureRange") != null){
   $('#daterange-btn span').html('<i class="fa fa-calendar"></i> Date Range');
 }
 
-// Load dynamic products table
-// $.ajax({
-//   url: "ajax/datatable-products.ajax.php",
-//   success: function(answer){
-//     console.log(answer);
-//   }
-// })
-
 $('.salesTable').DataTable({
   "ajax": "ajax/datatable-sales.ajax.php",
   "deferRender": true,
@@ -89,7 +81,7 @@ $(".card_06").on("click", "button.addProductSale", function(){
 
         //レシート
         $("#receipt_description").append(      
-          '<div>'+description+
+          '<div idProduct="'+idProduct+'">'+description+
           '<br>                   1 x '+price+'円</div>'
       )
 
@@ -211,19 +203,11 @@ $(".card_06").on("click", "button.addServiceSale", function(){
 
         //レシート
         $("#receipt_description").append(      
-            '<div>'+categories+' '+description+
+            '<div idService="'+idService+'">'+categories+' '+description+
             '<br>                   1 x '+price+'円</div>'
         )
     }
       })
-      
-
-      
-
-      
-
-        
-        
 
     }
   })
@@ -1145,9 +1129,12 @@ $(".15off").on("click", function(){
 });
 
 
-
+//レジで削除したらレシートの項目も削除する
 $(".box-body").on("click", "button.removeProduct", function(){
-  console.log('jiji');
-  $("#receipt_description").remove();
+  var idService = $(this).attr("idService");
+  // console.log(idService);
+  var elems = document.getElementById('receipt_description').querySelector('[idService="'+idService+'"]');
+  // console.log(elems);
+  elems.remove();
 })
 

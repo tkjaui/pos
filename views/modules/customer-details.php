@@ -70,9 +70,11 @@
 
                 //test
                 $test = [];
+                $category = [];
                 // echo $value["products"];
                 preg_match_all('/"id":"(\w+)/', $value["products"], $match_id);
                 preg_match_all('/"id_2":"(\w+)/', $value["products"], $match_id2);
+                preg_match_all('/"idCategory":"(\w+)/', $value["products"], $match_idCategory);
                 
                 //初めの1はidがつくかつかないか、次の1は配列の順番  最後の数字を$iとかにする？   
                 for($i=0; $i<4; $i++){
@@ -93,9 +95,18 @@
                     // echo '<td>'.$serviceAnswer["description"].'</td>';
                     array_push($test, $serviceAnswer["description"]);
                   }
+                  $itemCategory = "id";
+                  $valueCategory = $match_idCategory[1][$i];
+                  $order = "id";
+                  $categoryAnswer = ControllerCategories::ctrShowCategories($itemCategory, $valueCategory, $order);
+                  array_push($category, $categoryAnswer["Category"]);
                 }
                 
-                echo '<td>'.$test[0].'<br>'.$test[1].'<br>'.$test[2].'</td>';
+                echo '<td>';
+                for($i=0; $i<count($test); $i++){
+                  echo $category[$i].'&nbsp;'.$test[$i].'<br>';
+                }
+                echo '</td>';
 
                 echo '<td>'.number_format($value["totalPrice"]).'円</td>
                 <td>'.$value["memo"].'<button style="margin-left:10px" class="btn btn-warning btnEditSales2" data-toggle="modal" data-target="#modalEditSales2" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button></td>

@@ -882,13 +882,22 @@ $('#addSales').on('show.bs.modal', function (event) {
   //モーダルを取得
   var modal = $(this);
   //合計金額を取得
-  var saleTotalItem = $('#saleTotal');
+  var saleTotalItem = $('#newSaleTotal');
   var saleTotal = saleTotalItem.val();
 
   // レシートの合計金額
-  $("#receipt_total").append(      
-    '<div>                      '+saleTotal+'円</div>'
-  )
+  if($("#receipt_total")){
+    $("#receipt_total").children().remove();
+    $("#receipt_total").append(      
+      '<p>                      '+saleTotal+'円</p>'
+    )
+  }else{
+    $("#receipt_total").append(      
+      '<p>                      '+saleTotal+'円</p>'
+    )
+  }
+  
+  
 
   //newSellerを取得
   var newSellerItem = $('#newSeller');
@@ -1136,12 +1145,12 @@ $(".box-body").on("click", "button.removeProduct", function(){
   // console.log(idService);
   var elems = document.getElementById('receipt_description').querySelector('[idService="'+idService+'"]');
   var elems2 = document.getElementById('receipt_description').querySelector('[idProduct="'+idProduct+'"]');
-  console.log(elems);
+  // console.log(elems);
   if(elems){
     elems.remove();
   } else {
     elems2.remove();
   }
-  
 })
+
 

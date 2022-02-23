@@ -427,9 +427,26 @@
           
           <!-- <button type="submit" class="btn btn-primary">会計をする</button> -->
         </div>
+
+        <div id="pre_print">
+      <h3 class="shopName">サカシタ理容と美容の店</h3>
+
+      <br><P class=shopInfo>〒031-0814</P>
+      <br><P class=shopInfo>八戸市妙向野場2-1</P>
+      <br><P class=shopInfo>TEL:0178-25-3455</P>
+
+      <?php echo date("Y-m-d H:i:s"); ?>
+
+        -----------------------------
+        <div id="receipt_description"></div> 
+        *****************************
+合計 <div id="receipt_total"></div> 
+お預り金額 <div id="receipt_oazukari"></div> 
+おつり <div id="newCashChange"></div> 
+        </div>
       
 
-        <pre id="pre_print">
+        <!-- <pre id="pre_print">
       サカシタ理容と美容の店
 
       〒031-0814
@@ -444,7 +461,7 @@
 合計 <div id="receipt_total"></div> 
 お預り金額 <div id="receipt_oazukari"></div> 
 おつり <div id="newCashChange"></div> 
-        </pre>
+        </pre> -->
 
         <!-- <button type="button" onclick="BtPrint(document.getElementById('pre_print').innerText)">
           プリント

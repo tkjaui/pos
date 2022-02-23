@@ -615,7 +615,6 @@ $("#newPaymentMethod").on('change',function(){
 // });
 
 
-
 function BtPrint(prn){
   var S = "#Intent;scheme=rawbt;";
   var P =  "package=ru.a402d.rawbtprinter;end;";
@@ -670,13 +669,28 @@ $(".saleForm").on("change", 'input#newCashValue', function(){
   var cash = $(this).val();
   var change = Number(cash) - Number($('#saleTotal').val());
 
-  $("div#receipt_oazukari").append(      
-    '<div>                      '+cash+'円</div>'
-  )
-
-  $("div#newCashChange").append(      
-    '<div>                      '+change+'円</div>'
-  )
+  if($("div#receipt_oazukari")){
+    $("div#receipt_oazukari").children().remove();
+    $("div#receipt_oazukari").append(      
+      '<div>                      '+cash+'円</div>'
+    )
+  }else{
+    $("div#receipt_oazukari").append(      
+      '<div>                      '+cash+'円</div>'
+    )
+  }
+  
+  if($("div#newCashChange")){
+    $("div#newCashChange").children().remove();
+    $("div#newCashChange").append(      
+      '<div>                      '+change+'円</div>'
+    )
+  }else{
+    $("div#newCashChange").append(      
+      '<div>                      '+change+'円</div>'
+    )
+  }
+  
 })
 
 

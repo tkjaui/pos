@@ -5852,4 +5852,11 @@ table.text-center th {
   margin-top: -15px;
 }
 
+.shopName {
+  text-align: center;
+}
+
+.shopInfo{
+  text-align: center;
+}
 

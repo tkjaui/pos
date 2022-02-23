@@ -92,38 +92,6 @@ $(".card_06").on("click", "button.addProductSale", function(){
 
 //Adding services to the sale from the regi
 $(".card_06").on("click", "button.addServiceSale", function(){
-  // 15%OFFがすでにあるか検索
-  // var input = document.getElementById("productsList").value;
-  // let targetStr = '"id":"172"';
-  // let result = input.indexOf(targetStr);
-  // console.log(result);
-
-  //もし15％OFFがあれば
-  // if(result == -1){
-    // 15%引き以外の合計を再度計算
-    // var totalPrice = $('#newSaleTotal').attr('totalSale');
-    // var discountPrice = 0 - Number(totalPrice * 0.15);
-  //   addingTotalPrices();
-  // }
-
-  //   const paragraph = input;
-  //   const regex = /"id":"172"/g;
-  //   const found = paragraph.match(regex);
-
-    // console.log(found);
-    
-    // if(!found){
-      
-    // }
-    
-    
-
-
-    // addingTotalPrices15()
-    //１５％引きの金額を再度計算
-    //合計金額を再度計算
-  // }
-
   var idService = $(this).attr("idService");
   $(this).removeClass("btn-primary addServiceSale");
   $(this).addClass("btn-default");
@@ -192,6 +160,8 @@ $(".card_06").on("click", "button.addServiceSale", function(){
         // Adding total prices
         addingTotalPrices();
 
+        
+
         //Add Tax
         addTax()
 
@@ -206,6 +176,32 @@ $(".card_06").on("click", "button.addServiceSale", function(){
             '<div idService="'+idService+'">'+categories+' '+description+
             '<br>                   1 x '+price+'円</div>'
         )
+
+        // 15%OFFがすでにあるか検索
+        // var input = document.getElementById("productsList").value;
+        // let targetStr = '"id":"172"';
+        // let result = input.indexOf(targetStr);
+        // console.log(input);
+        // console.log(result);
+
+        //もし15％OFFがあれば
+        // if(result != -1){
+        //   console.log('ある');
+          // 合計
+          // var totalPrice = $('#newSaleTotal').attr('totalSale');
+          // console.log(totalPrice);
+          //15％引きの金額
+          // var elems = document.getElementsByClassName('reji-production');
+          // elems.querySelector('[idService="172"]');
+          // console.log(elems);
+          // var discount = document.get
+
+          // var new_totalPrice = totalPrice-discountPrice;
+          // console.log(new_totalPrice);
+
+        
+        // }
+
     }
       })
 
@@ -235,6 +231,14 @@ $(".box-body").on("click", "button.removeProduct", function(){
   $(this).parent().parent().remove();
   var idService = $(this).attr("idService");
   var idProduct = $(this).attr("idProduct");
+
+  if(idService == "172"){
+    document.getElementById('15%off').disabled = false;
+  }
+  if(idService == "171"){
+    document.getElementById('shokaiwari').disabled = false;
+  }
+
   
   //Store in localstorage the ID of the product we want to delete
   if(localStorage.getItem("removeProduct") == null){
@@ -533,26 +537,6 @@ function addingTotalPrices(){
   // console.log(arrayAdditionPrice);
 }
 
-//Price addition 15%OFF以外
-function addingTotalPrices15(){
-  var input = document.getElementById("productsList").value;
-  let targetStr = '"id":"172"';
-  let result = input.indexOf(targetStr);
-  console.log(result);
-
-  //もし15％OFFがなければ
-  if(result == -1){
-    var priceItem = $('.newProductPrice') ;
-    var arrayAdditionPrice = [];
-  
-    
-    arrayAdditionPrice.push(Number($(priceItem).val()));
-    
-  
-    // console.log(arrayAdditionPrice);
-  } 
-  
-}
 
 //Add Tax
 function addTax(){
@@ -956,9 +940,11 @@ $("#newSeller").on("change", function(){
 
 // 紹介割ボタン
 $(".shokaiwari").on("click", function(){
+  document.getElementById("shokaiwari").disabled = true;
+
   var idService = $(this).attr("idService");
-  $(this).removeClass("btn-danger addServiceSale");
-  $(this).addClass("btn-default");
+  // $(this).removeClass("btn-danger addServiceSale");
+  // $(this).addClass("btn-default");
 
   var data = new FormData();
   data.append("idService", idService);
@@ -1047,12 +1033,14 @@ $(".shokaiwari").on("click", function(){
 
 // 初回15%off割引ボタン
 $(".15off").on("click", function(){
+  document.getElementById("15%off").disabled = true;
+
   var totalPrice = $('#newSaleTotal').attr('totalSale');
   var discountPrice = 0 - Number(totalPrice * 0.15);
 
   var idService = $(this).attr("idService");
-  $(this).removeClass("btn-danger addServiceSale");
-  $(this).addClass("btn-default");
+  // $(this).removeClass("btn-danger addServiceSale");
+  // $(this).addClass("btn-default");
 
   var data = new FormData();
   data.append("idService", idService);

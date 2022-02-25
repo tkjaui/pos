@@ -83,7 +83,15 @@ $(".card_06").on("click", "button.addProductSale", function(){
         $("#receipt_description").append(      
           '<div idProduct="'+idProduct+'">'+description+
           '<br>                   1 x '+price+'円</div>'
-      )
+        )
+
+        //仮売り
+        $("#receipt_description2").append(      
+          '<div idProduct="'+idProduct+'">'+
+            '<div class="price2"> '+description+'</div>'+
+            '<div class="price1">1 x '+price+'円</div>'+
+          '</div>'
+        )
 
     }
   })
@@ -175,6 +183,14 @@ $(".card_06").on("click", "button.addServiceSale", function(){
         $("#receipt_description").append(      
             '<div idService="'+idService+'">'+categories+' '+description+
             '<br>                   1 x '+price+'円</div>'
+        )
+
+        //仮売り
+        $("#receipt_description2").append(      
+          '<div idService="'+idService+'">'+
+            '<div class="price2">'+categories+' '+description+'</div>'+
+            '<div class="price1">1 x '+price+'円</div>'+
+          '</div>'
         )
 
         // 15%OFFがすでにあるか検索
@@ -875,6 +891,27 @@ $(".tables").on("click", ".btnEditSales2", function(){
   })
 })
 
+// 仮売りに合計金額を表示
+$('#modalKariuri').on('show.bs.modal', function (event) {
+  //モーダルを取得
+  var modal = $(this);
+  //合計金額を取得
+  var saleTotalItem = $('#newSaleTotal');
+  var saleTotal = saleTotalItem.val();
+
+  // レシートの合計金額
+  if($("#receipt_total2")){
+    $("#receipt_total2").children().remove();
+    $("#receipt_total2").append(      
+      '<p>'+saleTotal+'円</p>'
+    )
+  }else{
+    $("#receipt_total2").append(      
+      '<p>'+saleTotal+'円</p>'
+    )
+  }
+})
+
 // モーダルに合計金額を表示
 $('#addSales').on('show.bs.modal', function (event) {
   //モーダルを取得
@@ -1038,6 +1075,14 @@ $(".shokaiwari").on("click", function(){
             '<div idService="'+idService+'">'+categories+' '+description+
             '<br>                   1 x '+price+'円</div>'
         )
+
+        //仮売り
+        $("#receipt_description2").append(      
+          '<div idService="'+idService+'">'+
+            '<div class="price2">'+categories+' '+description+'</div>'+
+            '<div class="price1">1 x '+price+'円</div>'+
+          '</div>'
+        )
     }
       })
     }
@@ -1133,6 +1178,14 @@ $(".15off").on("click", function(){
             '<div idService="'+idService+'">'+categories+' '+description+
             '<br>                   1 x '+discountPrice+'円</div>'
         )
+
+        //仮売り
+        $("#receipt_description2").append(      
+          '<div idService="'+idService+'">'+
+            '<div class="price2" >'+categories+' '+description+'</div>'+
+            '<div class="price1">1 x '+discountPrice+'円</div>'+
+          '</div>'
+        )
     }
       })
     }
@@ -1148,6 +1201,21 @@ $(".box-body").on("click", "button.removeProduct", function(){
   var elems = document.getElementById('receipt_description').querySelector('[idService="'+idService+'"]');
   var elems2 = document.getElementById('receipt_description').querySelector('[idProduct="'+idProduct+'"]');
   // console.log(elems);
+  if(elems){
+    elems.remove();
+  } else {
+    elems2.remove();
+  }
+})
+
+//レジで削除したらレシートの項目も削除する
+$(".box-body").on("click", "button.removeProduct", function(){
+  var idService = $(this).attr("idService");
+  var idProduct = $(this).attr("idProduct");
+  // console.log(idService);
+  var elems = document.getElementById('receipt_description2').querySelector('[idService="'+idService+'"]');
+  var elems2 = document.getElementById('receipt_description2').querySelector('[idProduct="'+idProduct+'"]');
+  console.log(elems);
   if(elems){
     elems.remove();
   } else {

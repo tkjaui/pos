@@ -5860,3 +5860,37 @@ table.text-center th {
   text-align: center;
 }
 
+.payment_description{
+  text-align: center;
+}
+
+.price1{
+  text-align: right;
+}
+
+.price2{
+  text-align: left;
+}
+
+#receipt_description2{
+  /* background-color: pink; */
+  width:60%;
+  margin: 0 auto;
+  font-size: large;
+}
+
+.sum_price{
+  /* background-color: pink; */
+  width:60%;
+  margin: 0 auto;
+}
+
+.total_price{
+  text-align: left;
+  font-size: large;
+}
+
+#receipt_total2{
+  text-align: right;
+  font-size: large;
+}

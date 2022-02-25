@@ -134,6 +134,7 @@
               <!-- <button class="btn btn-primary pull-left" data-toggle="modal" data-target="#addSales">支払いへ</button> -->
             </div>
           </form>
+          <button class="pull-left btn btn-warning" id="kariuri" style="margin-top:10px;" data-toggle="modal" data-target="#modalKariuri" >仮売り伝票</button>
           <button class="pull-right btn btn-danger shokaiwari" id="shokaiwari" type="button" style="margin-left:10px;margin-top:10px;" idService="171">紹介割引 500円off</button>
           <button class="pull-right btn btn-danger 15off " id="15%off" type="button" style="margin-top:10px;" idService="172">初回割引 15%off</button>
 
@@ -428,8 +429,8 @@
           <!-- <button type="submit" class="btn btn-primary">会計をする</button> -->
         </div>
 
-        <div id="pre_print">
-      <h3 class="shopName">サカシタ理容と美容の店</h3>
+        <!-- <div id="pre_print">
+      <h2 class="shopName">サカシタ理容と美容の店</h2>
 
       <br><P class=shopInfo>〒031-0814</P>
       <br><P class=shopInfo>八戸市妙向野場2-1</P>
@@ -438,15 +439,15 @@
       <?php echo date("Y-m-d H:i:s"); ?>
 
         -----------------------------
-        <div id="receipt_description"></div> 
+        <div id="receipt_description2"></div> 
         *****************************
 合計 <div id="receipt_total"></div> 
 お預り金額 <div id="receipt_oazukari"></div> 
 おつり <div id="newCashChange"></div> 
-        </div>
+        </div> -->
       
 
-        <!-- <pre id="pre_print">
+        <pre id="pre_print">
       サカシタ理容と美容の店
 
       〒031-0814
@@ -461,7 +462,7 @@
 合計 <div id="receipt_total"></div> 
 お預り金額 <div id="receipt_oazukari"></div> 
 おつり <div id="newCashChange"></div> 
-        </pre> -->
+        </pre>
 
         <!-- <button type="button" onclick="BtPrint(document.getElementById('pre_print').innerText)">
           プリント
@@ -478,4 +479,33 @@
 </div>
 
 
+<!-- Modal kariuri -->
+<div id="modalKariuri" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+        <!-- Modal header -->
+        <div class="modal-header" style="background:#3c8dbc; color:#fff">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="text-align:center;">仮売り伝票</h4>
+        </div>
 
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="payment_description">
+            <div id="receipt_description2"></div> 
+            ******************************************************************
+            <div class="sum_price">
+              <div class="total_price">合計</div> 
+              <div id="receipt_total2"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-right" data-dismiss="modal">閉じる</button>
+        </div>
+    </div>
+  </div>
+</div>

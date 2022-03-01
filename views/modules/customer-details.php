@@ -77,7 +77,7 @@
                 preg_match_all('/"idCategory":"(\w+)/', $value["products"], $match_idCategory);
                 
                 //初めの1はidがつくかつかないか、次の1は配列の順番  最後の数字を$iとかにする？   
-                for($i=0; $i<4; $i++){
+                for($i=0; $i<count($match_id2[1]); $i++){
                   if($match_id2[1][$i] == "addProductSale"){
                     // array_push($test, [$match_id[1][$i], $match_id2[1][$i]]);
                     $itemProduct = "id";

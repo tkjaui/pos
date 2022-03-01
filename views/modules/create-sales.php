@@ -130,7 +130,11 @@
               <button type="submit" class="btn btn-primary pull-left">会計をする</button>
             </div> -->
             <button style="margin-left:10px;" type="button" class="btn btn-primary" onclick="ajax_print('views/modules/receipt.php',this)">レジOPEN</button>
+            <button type="button" class="btn btn-primary" onclick="ajax_print('xpyun-opensdk-php-demo/english/demo/index.php',this)">レジOPEN2</button>
+            <button><a href="xpyun-opensdk-php-demo/english/demo/index.php">re</a></button>
+            
             <div class="box-footer">
+
               <!-- <button class="btn btn-primary pull-left" data-toggle="modal" data-target="#addSales">支払いへ</button> -->
             </div>
           </form>
@@ -424,6 +428,7 @@
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">閉じる</button>
           <!-- <button type="submit" class="btn btn-primary" onclick="ajax_print('vendor/mike42/escpos-php/example/rawbt-receipt.php',this)">会計をする</button> -->
           <button type="button" class="btn btn-primary" onclick="ajax_print('views/modules/receipt.php',this)">レジOPEN</button>
+          
           <button type="submit" class="btn btn-primary" onclick="BtPrint(document.getElementById('pre_print').innerText);">会計をする</button>
           
           <!-- <button type="submit" class="btn btn-primary">会計をする</button> -->

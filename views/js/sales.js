@@ -636,6 +636,7 @@ function BtPrint(prn){
   var P =  "package=ru.a402d.rawbtprinter;end;";
   var textEncoded = encodeURI(prn);
   window.location.href="intent:"+textEncoded+S+P;
+ 
 }
 
 // for php demo call
@@ -650,11 +651,6 @@ function ajax_print(url, btn) {
     }).always(function () {
         b.text(b.attr('data-old'));
     })
-
-    // var S = "#Intent;scheme=rawbt;";
-    // var P =  "package=ru.a402d.rawbtprinter;end;";
-    // var textEncoded = encodeURI(prn);
-    // window.location.href="intent:"+textEncoded+S+P;
 }
 
 

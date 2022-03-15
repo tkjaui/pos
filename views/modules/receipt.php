@@ -12,9 +12,10 @@ $printer = new Printer($connector);
 $printer->initialize();
 
 
-// $printer -> text("Hello World!\n");
+$printer -> text("Hello World!\n");
+$printer -> text("サカシタ\n");
 $printer->pulse();
 // $printer->feed();
-$printer->cut();
+// $printer->cut();
 
 $printer->close();

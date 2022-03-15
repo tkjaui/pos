@@ -130,8 +130,8 @@
               <button type="submit" class="btn btn-primary pull-left">会計をする</button>
             </div> -->
             <button style="margin-left:10px;" type="button" class="btn btn-primary" onclick="ajax_print('views/modules/receipt.php',this)">レジOPEN</button>
-            <button type="button" class="btn btn-primary" onclick="ajax_print('xpyun-opensdk-php-demo/english/demo/index.php',this)">レジOPEN2</button>
-            <button><a href="xpyun-opensdk-php-demo/english/demo/index.php">re</a></button>
+            <!-- <button type="button" class="btn btn-primary" onclick="ajax_print('xpyun-opensdk-php-demo/english/demo/index.php',this)">レジOPEN2</button>
+            <button><a href="xpyun-opensdk-php-demo/english/demo/index.php">re</a></button> -->
             
             <div class="box-footer">
 
@@ -406,8 +406,8 @@
                   <select class="form-control input-lg" name="newPaymentMethod" id="newPaymentMethod" required>
                     <option value="">支払い方法</option>
                     <option value="cash">現金</option>
-                    <option value="CC">クレジッドカード</option>
-                    <option value="DC">デビットカード</option>
+                    <!-- <option value="CC">クレジッドカード</option>
+                    <option value="DC">デビットカード</option> -->
                   </select>
                 </div>
               </div>
